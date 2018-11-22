@@ -1,7 +1,5 @@
 package sdj_company;
 
-import static org.junit.Assert.fail;
-
 import java.sql.SQLException;
 import java.util.List;
 
@@ -9,14 +7,17 @@ import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.FixMethodOrder;
 import org.junit.Test;
+import org.junit.runners.MethodSorters;
 
-import sdj_company.LogUtil;
 import sdj_company.dao.DepartmentDao;
 import sdj_company.dao.DepartmentDaoImpl;
 import sdj_product.dto.Department;
 
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class DepartmentTest {
+	
 	static DepartmentDao dao;
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -38,7 +39,7 @@ public class DepartmentTest {
 	}
 	
 	@Test
-	public void selectDepartmentByAll() {
+	public void test01selectDepartmentByAll() {
 		
 		List<Department> lists = dao.selectDepartmentByAll();
 		LogUtil.prnLog(lists.toString());
@@ -60,8 +61,8 @@ public class DepartmentTest {
 			}
 		}
 	}
-	/*@Test
-	public void test04DeleteDepartment() {
+	@Test
+	public void test05DeleteDepartment() {
 		try {
 			Department delDept = new Department();
 			delDept.setDeptno("D006");
@@ -70,12 +71,12 @@ public class DepartmentTest {
 			Assert.assertEquals(1, rowAffected);
 		} catch (SQLException e) {
 			if (e.getErrorCode() == 1451) {
-				LogUtil.prnLog("해당 음식 존재한다.");
+				LogUtil.prnLog("해당 부서 존재한다.");
 			} else {
 				LogUtil.prnLog(e);
 			}
 		}
-	}*/
+	}
 	@Test
 	public void test03UpdateDepartment() {
 		try {
@@ -83,12 +84,15 @@ public class DepartmentTest {
 			int rowAffected = dao.updateDepartment(updateDept);
 			LogUtil.prnLog(String.format("rowAffected %d", rowAffected));
 			Assert.assertEquals(1, rowAffected);
+			
 		} catch (SQLException e) {
 			LogUtil.prnLog(e);
+			
 		}
+		
 	}
 	@Test
-	public void test05SelectDepartmentByNo() {
+	public void test04SelectDepartmentByNo() {
 		try {
 			Department selDept = new Department();
 			selDept.setDeptno("D003");

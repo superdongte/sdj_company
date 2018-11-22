@@ -6,10 +6,10 @@ import java.util.List;
 import sdj_product.dto.Title;
 
 public interface TitleDao {
-	List<Title> selectDepartmentByAll();
-	int insertDepartment(Title title) throws SQLException;
+	List<Title> selectTitleByAll();
+	int insertTitle(Title title) throws SQLException;
 	
-	int deleteDepartment(Title title) throws SQLException;
-	int updateDepartment(Title title) throws SQLException;
-	Title selectDepartmentByNo(Title title) throws SQLException;
+	int deleteTitle(Title title) throws SQLException;
+	int updateTitle(Title title) throws SQLException;
+	Title selectTitleByNo(Title title) throws SQLException;
 }

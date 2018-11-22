@@ -73,6 +73,7 @@ public class DepartmentDaoImpl implements DepartmentDao{
 			pstmt.setString(3, department.getDeptno());
 			pstmt.setString(1, department.getDeptname());
 			pstmt.setInt(2, department.getFloor());
+			LogUtil.prnLog(pstmt);
 			rowAffected = pstmt.executeUpdate();
 		}
 		return rowAffected;
