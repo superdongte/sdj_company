@@ -6,15 +6,20 @@ public class Employee {
 	private Title title;
 	private int salary;
 	private String gender;
-	private String dept;
-	private String ipsa; 
 	private Department dno;
+	private String ipsa;
 	
 	public Employee() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	/*get and setter*/
+
+	@Override
+	public String toString() {
+		return String.format("Employee [empno=%s, empname=%s, title=%s, salary=%s, gender=%s, dept=%s, ipsa=%s]", empno,
+				empname, title, salary, gender, dno, ipsa);
+	}
+
 	public String getEmpno() {
 		return empno;
 	}
@@ -55,12 +60,14 @@ public class Employee {
 		this.gender = gender;
 	}
 
-	public String getDept() {
-		return dept;
+
+	
+	public Department getDno() {
+		return dno;
 	}
 
-	public void setDept(String dept) {
-		this.dept = dept;
+	public void setDno(Department dno) {
+		this.dno = dno;
 	}
 
 	public String getIpsa() {
@@ -71,39 +78,15 @@ public class Employee {
 		this.ipsa = ipsa;
 	}
 
-	public Department getDno() {
-		return dno;
-	}
-
-	public void setDno(Department dno) {
-		this.dno = dno;
-	}
-	/*using field*/
-	public Employee(String empno, String empname, Title title, int salary, String gender, String dept, String ipsa,
+	public Employee(String empno, String empname, Title title, int salary, String gender, String ipsa,
 			Department dno) {
 		this.empno = empno;
 		this.empname = empname;
 		this.title = title;
 		this.salary = salary;
 		this.gender = gender;
-		this.dept = dept;
 		this.ipsa = ipsa;
 		this.dno = dno;
+		
 	}
-
-	public Employee(Title title) {
-		this.title = title;
-	}
-
-	public Employee(Department dno) {
-		this.dno = dno;
-	}
-	/*toString*/
-	@Override
-	public String toString() {
-		return String.format(
-				"Employee [empno=%s, empname=%s, title=%s, salary=%s, gender=%s, dept=%s, ipsa=%s, dno=%s]", empno,
-				empname, title, salary, gender, dept, ipsa, dno);
-	}
-	
-}
+}//end of class
