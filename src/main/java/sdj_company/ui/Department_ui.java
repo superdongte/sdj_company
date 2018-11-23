@@ -11,12 +11,20 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.GridLayout;
 import java.awt.Color;
+import javax.swing.SwingConstants;
+import javax.swing.BoxLayout;
+import java.awt.CardLayout;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
 
 public class Department_ui extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField tfDeptno;
-	private JTextField tfName;
+	private JTextField tFDeptno;
+	private JTextField tfDeptname;
 	private JTextField tfFloor;
 
 	/**
@@ -44,48 +52,49 @@ public class Department_ui extends JFrame {
 	private void initComponents() {
 		setTitle("부서관리");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 264);
+		setBounds(100, 100, 450, 283);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
+		contentPane.setLayout(new BorderLayout(0, 0));
 		
 		JPanel panel = new JPanel();
-		panel.setForeground(new Color(0, 0, 0));
-		contentPane.add(panel, BorderLayout.CENTER);
+		contentPane.add(panel, BorderLayout.NORTH);
 		panel.setLayout(new GridLayout(0, 2, 10, 10));
 		
-		JLabel lbldeptno = new JLabel("번호");
-		panel.add(lbldeptno);
+		JLabel lblDeptno = new JLabel("번호");
+		lblDeptno.setHorizontalAlignment(SwingConstants.RIGHT);
+		panel.add(lblDeptno);
 		
-		tfDeptno = new JTextField();
-		panel.add(tfDeptno);
-		tfDeptno.setColumns(10);
+		tFDeptno = new JTextField();
+		panel.add(tFDeptno);
+		tFDeptno.setColumns(10);
 		
-		JLabel lbldeptname = new JLabel("부서명");
-		panel.add(lbldeptname);
+		JLabel lblDeptname = new JLabel("부서명");
+		lblDeptname.setHorizontalAlignment(SwingConstants.RIGHT);
+		panel.add(lblDeptname);
 		
-		tfName = new JTextField();
-		panel.add(tfName);
-		tfName.setColumns(10);
+		tfDeptname = new JTextField();
+		panel.add(tfDeptname);
+		tfDeptname.setColumns(10);
 		
-		JLabel lblfloor = new JLabel("위치");
-		panel.add(lblfloor);
+		JLabel lblFloor = new JLabel("위치");
+		lblFloor.setHorizontalAlignment(SwingConstants.RIGHT);
+		panel.add(lblFloor);
 		
 		tfFloor = new JTextField();
 		panel.add(tfFloor);
 		tfFloor.setColumns(10);
 		
-		JButton btnAdd = new JButton("추가");
-		panel.add(btnAdd);
+		JButton btn1 = new JButton("추가");
+		panel.add(btn1);
 		
-		JButton btnCancel = new JButton("취소");
-		panel.add(btnCancel);
+		JButton btn2 = new JButton("취소");
+		panel.add(btn2);
 		
-		JPanel panel_1 = new JPanel();
-		panel_1.setForeground(new Color(0, 0, 0));
-		contentPane.add(panel_1, BorderLayout.SOUTH);
-		panel_1.setLayout(new BorderLayout(0, 0));
+		JPanel D_panel = new JPanel();
+		contentPane.add(D_panel, BorderLayout.CENTER);
+		D_panel.setLayout(new BorderLayout(0, 0));
 	}
 
 }
