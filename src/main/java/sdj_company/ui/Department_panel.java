@@ -1,6 +1,9 @@
 package sdj_company.ui;
 
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
+
 import java.awt.BorderLayout;
 import java.util.List;
 import java.util.Vector;
@@ -14,12 +17,10 @@ import sdj_product.dto.Department;
 public class Department_panel extends JPanel {
 	private JTable D_table;
 	private List<Department> list;
-	/**
-	 * Create the panel.
-	 */
 	public void setLists(List<Department> list) {
 		this.list = list;
 	}
+	
 	public Department_panel() {
 
 		initComponents();
@@ -55,4 +56,19 @@ public class Department_panel extends JPanel {
 	private Object[] getRow(Department department) {
 		return new Object[] {department.getDeptno(),department.getDeptname(),department.getFloor()};
 	}
+	
+	public void setPopupMenu(JPopupMenu createDeptPopUpMenu) {
+		D_table.setComponentPopupMenu(createDeptPopUpMenu);
+	}
+	public Department selectedItem() {
+		int selectedIndex = D_table.getSelectedRow();
+		if(selectedIndex == -1) {
+			JOptionPane.showMessageDialog(null, "해당 항목을 선택하세욧");
+			return null;
+		}
+		String deptno = (String) D_table.getValueAt(selectedIndex, 0);
+		String deptname = (String) D_table.getValueAt(selectedIndex, 1);
+		int floor = (int)D_table.getValueAt(selectedIndex,2);
+		return new Department(deptno,deptname,floor);
+	} 
 }//end of class

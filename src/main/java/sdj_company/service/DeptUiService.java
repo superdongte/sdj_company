@@ -22,4 +22,10 @@ public class DeptUiService {
 	public String nextDeptno() {
 		return dao.nextDeptNo();
 	}
+	public int unRegisterDepartment(Department dept) throws SQLException{
+		return dao.deleteDepartment(dept);
+	}
+	public int UpdateDepartment(Department dept) throws SQLException {
+		return dao.updateDepartment(dept);
+	}
 }//end of class
