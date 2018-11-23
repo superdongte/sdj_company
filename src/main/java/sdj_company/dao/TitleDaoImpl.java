@@ -98,5 +98,25 @@ public class TitleDaoImpl implements TitleDao {
 		}
 		return tept;
 	}
+	//1씩 증가하는 값 지정하기
+	@Override
+	public String nextTno() {
+		String sql="select max(Tno) as nextno from Title";
+		String nextTtr = null;
+		try(Connection conn = ConnectionProvider.getConnection();
+				PreparedStatement pstmt = conn.prepareStatement(sql);
+				ResultSet rs = pstmt.executeQuery()){
+				LogUtil.prnLog(pstmt);
+		if(rs.next()) {
+			nextTtr = String.format("T%03d", Integer.parseInt(rs.getString("nextno").substring(1))+1);
+			}
+		}catch(NullPointerException e) {
+			nextTtr = "T001";
+			e.printStackTrace();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return nextTtr;
+	}
 
-}
+}//end of class

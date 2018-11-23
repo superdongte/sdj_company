@@ -38,4 +38,30 @@ public class Title {
 	public String toString() {
 		return String.format("Title [tno=%s, tname=%s]", tno, tname);
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((tno == null) ? 0 : tno.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Title other = (Title) obj;
+		if (tno == null) {
+			if (other.tno != null)
+				return false;
+		} else if (!tno.equals(other.tno))
+			return false;
+		return true;
+	}
+	
 }

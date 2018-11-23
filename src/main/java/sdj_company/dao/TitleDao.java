@@ -12,4 +12,5 @@ public interface TitleDao {
 	int deleteTitle(Title title) throws SQLException;
 	int updateTitle(Title title) throws SQLException;
 	Title selectTitleByNo(Title title) throws SQLException;
+	String nextTno();
 }

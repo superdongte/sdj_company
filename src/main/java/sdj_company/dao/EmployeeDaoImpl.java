@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
@@ -42,7 +43,7 @@ public class EmployeeDaoImpl implements EmployeeDao{
 		Title title = new Title(rs.getString("title"),rs.getString("tname"));
 		int salary = rs.getInt("salary");
 		String gender = rs.getString("gender");
-		String ipsa = rs.getString("ipsa");
+		Date ipsa = rs.getDate("ipsa");
 		Department dno = new Department(rs.getString("dno"),rs.getString("deptname"),rs.getInt("floor"));
 
 		return new Employee(empno,empname,title,salary,gender,ipsa,dno);
@@ -60,7 +61,7 @@ public class EmployeeDaoImpl implements EmployeeDao{
 				pstmt.setInt(4, employee.getSalary());
 				pstmt.setString(5, employee.getGender());
 				pstmt.setString(7, employee.getDno().getDeptno());
-				pstmt.setString(6, employee.getIpsa());
+				pstmt.setDate(6, new java.sql.Date(employee.getIpsa().getTime()));
 				
 				rowAffected = pstmt.executeUpdate();
 		}
@@ -91,7 +92,7 @@ public class EmployeeDaoImpl implements EmployeeDao{
 				pstmt.setString(2, employee.getTitle().getTno());
 				pstmt.setInt(3, employee.getSalary());
 				pstmt.setString(4, employee.getGender());
-				pstmt.setString(5, employee.getIpsa());
+				pstmt.setDate(6, new java.sql.Date(employee.getIpsa().getTime()));
 				pstmt.setString(6, employee.getDno().getDeptno());
 				pstmt.setString(7, employee.getEmpno());
 				LogUtil.prnLog(pstmt);
@@ -124,10 +125,16 @@ public class EmployeeDaoImpl implements EmployeeDao{
 		Title title = new Title(rs.getString("title"));
 		int salary = rs.getInt("salary");
 		String gender = rs.getString("gender");
-		String ipsa = rs.getString("ipsa");
+		Date ipsa = rs.getDate("ipsa");
 		Department dno = new Department(rs.getString("dno"));
 
 		return new Employee(empno,empname,title,salary,gender,ipsa,dno);
+	}
+
+	@Override
+	public String nextEmpNo() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

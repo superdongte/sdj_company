@@ -1,5 +1,6 @@
 package sdj_company;
 
+import java.sql.Date;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -48,7 +49,7 @@ public class EmployeeTest {
 	@Test
 	public void test02insertEmployee() {
 		try {
-			Employee newEmployee = new Employee("ED1810","너회장", new Title("T006"), 50000000,"남자", "2018-10-21",new Department("D005"));
+			Employee newEmployee = new Employee("ED1810","너회장", new Title("T005"), 50000000,"남자", new Date(2017 - 11 - 22), new Department("D005"));
 			int rowAffected = dao.insertEmployee(newEmployee);
 			LogUtil.prnLog(String.format("rowAffected %d",rowAffected));
 			Assert.assertEquals(1, rowAffected);
@@ -79,7 +80,7 @@ public class EmployeeTest {
 	@Test
 	public void test03UpdateEmployee(){
 		try {
-			Employee updateEmp = new Employee("ED1810","건달", new Title("T007"),5000000,"여자","2018-12-01",new Department("D005"));
+			Employee updateEmp = new Employee("ED1810","건달", new Title("T007"),5000000,"여자",new Date(2017 - 11 - 21),new Department("D005"));
 			int rowAffected = dao.updateEmployee(updateEmp);
 			LogUtil.prnLog(String.format("rowAffected %d", rowAffected));
 			Assert.assertEquals(1, rowAffected);

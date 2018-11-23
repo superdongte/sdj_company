@@ -1,5 +1,7 @@
 package sdj_product.dto;
 
+import java.util.Date;
+
 public class Employee { 
 	private String empno;
 	private String empname;
@@ -7,7 +9,7 @@ public class Employee {
 	private int salary;
 	private String gender;
 	private Department dno;
-	private String ipsa;
+	private Date ipsa;
 	
 	public Employee() {
 		super();
@@ -70,15 +72,15 @@ public class Employee {
 		this.dno = dno;
 	}
 
-	public String getIpsa() {
+	public Date getIpsa() {
 		return ipsa;
 	}
 
-	public void setIpsa(String ipsa) {
+	public void setIpsa(Date ipsa) {
 		this.ipsa = ipsa;
 	}
 
-	public Employee(String empno, String empname, Title title, int salary, String gender, String ipsa,
+	public Employee(String empno, String empname, Title title, int salary, String gender, Date ipsa,
 			Department dno) {
 		this.empno = empno;
 		this.empname = empname;

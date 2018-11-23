@@ -12,4 +12,5 @@ public interface EmployeeDao{
 	int deleteEmployee(Employee employee) throws SQLException;
 	int updateEmployee(Employee employee) throws SQLException;
 	Employee selectEmployeeByNo(Employee employee) throws SQLException;
+	String nextEmpNo();
 }

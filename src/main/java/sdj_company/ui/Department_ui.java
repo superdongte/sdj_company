@@ -115,6 +115,7 @@ public class Department_ui extends JFrame implements ActionListener {
 		 */
 		pDeptList.setPopupMenu(createDeptPopUpMenu());
 	}
+	//수정 팝업 만들기
 	private JPopupMenu createDeptPopUpMenu() {
 		JPopupMenu PopMenu = new JPopupMenu();
 		JMenuItem delitem = new JMenuItem("삭제");
@@ -180,6 +181,9 @@ public class Department_ui extends JFrame implements ActionListener {
 				pDeptList.setLists(service.selectDeptAll());
 				pDeptList.loadData();
 				JOptionPane.showMessageDialog(null, "수정되엇습니다.");
+				clearTf();
+				btnAdd.setText(ADD);
+				tFDeptno.setText(service.nextDeptno());
 			}
 		}catch(SQLException e1){
 			 e1.printStackTrace();
