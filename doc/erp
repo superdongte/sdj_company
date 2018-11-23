@@ -1,0 +1,131 @@
+select *
+from employee;
+
+select *
+from department;
+
+insert into department values('D001','마케팅',10),
+							('D002','개발',9),
+							('D003','인사',6),
+							('D004','총무',7),
+							('D005','경영',4);
+							
+insert into employee values('E017001','서동준','T001',5000000,'남자','2017-03-01','D005'),
+							('E017002','나부장','T002',4000000,'남자','2017-03-01','D001'),
+							('E017003','너부장','T002',4000000,'여자','2017-03-01','D002'),
+							('E017004','나과장','T003',3500000,'남자','2017-03-01','D001'),
+							('E017005','너과장','T003',3500000,'여자','2017-03-01','D002'),
+							('E017006','나대리','T004',3000000,'남자','2017-03-01','D001'),
+							('E017007','너대리','T004',3000000,'여자','2017-03-01','D002'),
+							('E017008','나사원','T005',3000000,'여자','2017-03-01','D002'),
+							('E017009','너사원','T005',3000000,'여자','2017-03-01','D002');
+
+insert into title values('T001','사장'),
+						('T002','부장'),
+						('T003','과장'),
+						('T004','대리'),
+						('T005','사원');
+						
+select 
+from title;
+
+-- sdj_company
+CREATE SCHEMA sdj_company;
+
+-- department
+CREATE TABLE sdj_company.department (
+	deptno   CHAR(4)     NOT NULL COMMENT '부서번호', -- 부서번호
+	deptname VARCHAR(28) NOT NULL COMMENT '부서명', -- 부서명
+	floor    INT(8)      NULL     DEFAULT 1 COMMENT '위치' -- 위치
+)
+COMMENT 'department';
+
+-- department
+ALTER TABLE sdj_company.department
+	ADD CONSTRAINT
+		PRIMARY KEY (
+			deptno -- 부서번호
+		);
+
+-- employee
+CREATE TABLE sdj_company.employee (
+	empno   CHAR(10)    NOT NULL COMMENT '번호', -- 번호
+	empname VARCHAR(28) NOT NULL COMMENT '사원명', -- 사원명
+	title   CHAR(4)     NULL     COMMENT '직책', -- 직책
+	salary  INT(4)      NULL     COMMENT '급여', -- 급여
+	gender  CHAR(2)     NULL     COMMENT '성별', -- 성별
+	ipsa    Date     			COMMENT '입사일', -- 입사일
+	dno     CHAR(4)     NULL     COMMENT '코드번호' -- 코드번호
+)
+COMMENT 'employee';
+
+-- employee
+ALTER TABLE sdj_company.employee
+	ADD CONSTRAINT
+		PRIMARY KEY (
+			empno -- 번호
+		);
+
+-- title
+CREATE TABLE sdj_company.title (
+	tno   CHAR(4) NOT NULL COMMENT '번호', -- 번호
+	tname CHAR(2) NULL     COMMENT '직책' -- 직책
+)
+COMMENT 'title';
+
+-- title
+ALTER TABLE sdj_company.title
+	ADD CONSTRAINT
+		PRIMARY KEY (
+			tno -- 번호
+		);
+
+-- employee
+ALTER TABLE sdj_company.employee
+	ADD CONSTRAINT employee_ibfk_1 -- employee_ibfk_1
+		FOREIGN KEY (
+			dno -- 코드번호
+		)
+		REFERENCES sdj_company.department ( -- department
+			deptno -- 부서번호
+		),
+	ADD INDEX dno (
+		dno -- 코드번호
+	);
+
+-- employee
+ALTER TABLE sdj_company.employee
+	ADD CONSTRAINT employee_ibfk_2 -- employee_ibfk_2
+		FOREIGN KEY (
+			title -- 직책
+		)
+		REFERENCES sdj_company.title ( -- title
+			tno -- 번호
+		),
+	ADD INDEX title (
+		title -- 직책
+	);
+
+select *
+from department;
+select *
+from employee;
+select *
+from title;
+delete 
+from employee
+where  empno = 'ED1810';
+
+delete
+from department
+where deptno = 'D007';
+
+delete
+from title
+where tno = '인턴';
+select empno, empname, title, tname, salary, gender, deptname, floor, ipsa
+from employee as e join title t on e.title = t.tno join department d on e.dno = d.deptno;
+
+call total;
+
+insert into employee values()
