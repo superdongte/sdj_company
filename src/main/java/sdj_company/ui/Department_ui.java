@@ -6,6 +6,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import sdj_company.service.DeptUiService;
+
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
@@ -19,36 +22,26 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
-public class Department_ui extends JFrame {
+public class Department_ui extends JFrame implements ActionListener {
 
 	private JPanel contentPane;
 	private JTextField tFDeptno;
 	private JTextField tfDeptname;
 	private JTextField tfFloor;
+	private DeptUiService service;
+	private JButton btn1;
+	private JButton btn2;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Department_ui frame = new Department_ui();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
+	
 	public Department_ui() {
+		
+		service = new DeptUiService();
 		initComponents();
 	}
+	
 	private void initComponents() {
 		setTitle("부서관리");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -66,8 +59,11 @@ public class Department_ui extends JFrame {
 		lblDeptno.setHorizontalAlignment(SwingConstants.RIGHT);
 		panel.add(lblDeptno);
 		
+		
 		tFDeptno = new JTextField();
+		tFDeptno.setEnabled(false);
 		panel.add(tFDeptno);
+		tFDeptno.setText(service.nextDeptno());
 		tFDeptno.setColumns(10);
 		
 		JLabel lblDeptname = new JLabel("부서명");
@@ -86,15 +82,37 @@ public class Department_ui extends JFrame {
 		panel.add(tfFloor);
 		tfFloor.setColumns(10);
 		
-		JButton btn1 = new JButton("추가");
+		btn1 = new JButton("추가");
+		btn1.addActionListener(this);
 		panel.add(btn1);
 		
-		JButton btn2 = new JButton("취소");
+		btn2 = new JButton("취소");
+		btn2.addActionListener(this);
 		panel.add(btn2);
 		
-		JPanel D_panel = new JPanel();
-		contentPane.add(D_panel, BorderLayout.CENTER);
-		D_panel.setLayout(new BorderLayout(0, 0));
-	}
 
-}
+		Department_panel D_panel = new Department_panel();
+		D_panel.setLists(service.selectDeptAll());
+		D_panel.loadData();
+		contentPane.add(D_panel);
+		/*contentPane.add(D_panel, BorderLayout.CENTER);
+		D_panel.setLayout(new BorderLayout(0, 0));*/
+		
+		
+	}
+		
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btn2) {
+			do_btn2_actionPerformed(e);
+		}
+		if (e.getSource() == btn1) {
+			do_btn1_actionPerformed(e);
+		}
+	}
+	protected void do_btn1_actionPerformed(ActionEvent e) {
+		
+	
+	}
+	protected void do_btn2_actionPerformed(ActionEvent e) {
+	}
+}//end of class
