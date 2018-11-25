@@ -9,14 +9,15 @@ import javax.swing.border.EmptyBorder;
 import java.awt.GridLayout;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 
 public class management extends JFrame implements ActionListener {
 
 	private JPanel contentPane;
-	private JButton Btn1;
-	private JButton Btn2;
-	private JButton Btn3;
+	private JButton BtnEmp;
+	private JButton BtnDepart;
+	private JButton BtnTitle;
 
 	/**
 	 * Launch the application.
@@ -42,41 +43,60 @@ public class management extends JFrame implements ActionListener {
 	}
 	private void initComponents() {
 		setTitle("ERP관리 프로그램");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 460, 104);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(new GridLayout(0, 3, 10, 10));
 		
-		Btn1 = new JButton("사원관리");
-		Btn1.addActionListener(this);
-		contentPane.add(Btn1);
+		BtnEmp = new JButton("사원관리");
+		BtnEmp.addActionListener(this);
+		contentPane.add(BtnEmp);
 		
-		Btn2 = new JButton("부서관리");
-		Btn2.addActionListener(this);
-		contentPane.add(Btn2);
+		BtnDepart = new JButton("부서관리");
+		BtnDepart.addActionListener(this);
+		contentPane.add(BtnDepart);
 		
-		Btn3 = new JButton("직책관리");
-		Btn3.addActionListener(this);
-		contentPane.add(Btn3);
+		BtnTitle = new JButton("직책관리");
+		BtnTitle.addActionListener(this);
+		contentPane.add(BtnTitle);
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == Btn3) {
-			do_Btn3_actionPerformed(e);
+		if (e.getSource() == BtnTitle) {
+			try {
+				do_BtnTitle_actionPerformed(e);
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
 		}
-		if (e.getSource() == Btn2) {
-			do_Btn2_actionPerformed(e);
+		if (e.getSource() == BtnDepart) {
+			try {
+				do_BtnDepart_actionPerformed(e);
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
 		}
-		if (e.getSource() == Btn1) {
-			do_Btn1_actionPerformed(e);
+		if (e.getSource() == BtnEmp) {
+			try {
+				do_BtnEmp_actionPerformed(e);
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
 		}
 	}
-	protected void do_Btn1_actionPerformed(ActionEvent e) {
+	protected void do_BtnEmp_actionPerformed(ActionEvent e) throws SQLException {
+		Employee_ui employee_ui = new Employee_ui();
+		employee_ui.setVisible(true);
+ 		
 	}
-	protected void do_Btn2_actionPerformed(ActionEvent e) {
+	protected void do_BtnDepart_actionPerformed(ActionEvent e) throws SQLException{
+		Department_ui department_ui = new Department_ui();
+		department_ui.setVisible(true);
 	}
-	protected void do_Btn3_actionPerformed(ActionEvent e) {
+	protected void do_BtnTitle_actionPerformed(ActionEvent e) throws SQLException{
+		Title_ui title_ui = new Title_ui();
+		title_ui.setVisible(true);
 	}
 }

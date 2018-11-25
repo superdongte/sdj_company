@@ -52,26 +52,7 @@ public class Employee_ui extends JFrame implements ActionListener {
 	private JRadioButton rdbtnMale;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 	private JSpinner salary;
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Employee_ui frame = new Employee_ui();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 * @throws SQLException 
-	 */
+	
 	public Employee_ui() throws SQLException {
 		Service = new EmployeeUiService();
 		initComponents();
@@ -263,6 +244,8 @@ public class Employee_ui extends JFrame implements ActionListener {
 			pEmpList.loadData();
 			if (res == 1) {
 				JOptionPane.showMessageDialog(null, "수정되었습니다.");
+				btnAdd.setText("추가");
+				tfEmpno.setText(Service.nextEmpNo());
 			}
 			clearTf();
 		} catch (Exception e1) {
