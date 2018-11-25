@@ -34,19 +34,24 @@ public class Title {
 		this.tno = tno;
 	}
 
+//	@Override
+//	public String toString() {
+//		return String.format("Title [tno=%s, tname=%s]", tno, tname);
+//	}
+	
+
 	@Override
 	public String toString() {
-		return String.format("Title [tno=%s, tname=%s]", tno, tname);
+		return tname;
 	}
-
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((tno == null) ? 0 : tno.hashCode());
 		return result;
-	}
-
+	}	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

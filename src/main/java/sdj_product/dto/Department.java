@@ -37,9 +37,36 @@ public class Department {
 	public Department(String deptno) {
 		this.deptno = deptno;
 	}
+//	@Override
+//	public String toString() {
+//		return String.format("department [deptno=%s, deptname=%s, floor=%s]", deptno, deptname, floor);
+//	}
 	@Override
 	public String toString() {
-		return String.format("department [deptno=%s, deptname=%s, floor=%s]", deptno, deptname, floor);
+		return String.format("%s(%s층)", deptname, floor);
+	}
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((deptno == null) ? 0 : deptno.hashCode());
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Department other = (Department) obj;
+		if (deptno == null) {
+			if (other.deptno != null)
+				return false;
+		} else if (!deptno.equals(other.deptno))
+			return false;
+		return true;
 	}
 	
 		

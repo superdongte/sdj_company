@@ -137,7 +137,7 @@ public class Title_ui extends JFrame implements ActionListener {
 		}
 		if (e.getActionCommand().equals(ADD)) {
 			do_btnAdd_actionPerformed(e);
-		} 
+		}
 		if (e.getActionCommand().equals(DEL)) {
 			do_mntDel_actionPerformed(e);
 		}

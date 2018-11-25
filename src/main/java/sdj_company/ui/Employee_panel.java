@@ -1,6 +1,7 @@
 package sdj_company.ui;
 
 import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 import java.awt.BorderLayout;
 import java.util.List;
@@ -13,7 +14,7 @@ import javax.swing.table.DefaultTableModel;
 import sdj_product.dto.Employee;
 
 public class Employee_panel extends JPanel {
-	private JTable table;
+	private JTable E_table;
 	private List<Employee> list;
 	
 	public void setList(List<Employee>list) {
@@ -32,11 +33,11 @@ public class Employee_panel extends JPanel {
 		JScrollPane scrollPane = new JScrollPane();
 		add(scrollPane, BorderLayout.CENTER);
 		
-		table = new JTable();
-		scrollPane.setViewportView(table);
+		E_table = new JTable();
+		scrollPane.setViewportView(E_table);
 	}
 	public void loadData() {
-		table.setModel(new DefaultTableModel(
+		E_table.setModel(new DefaultTableModel(
 				getdatas(),
 				getColumn()
 				));
@@ -54,6 +55,16 @@ public class Employee_panel extends JPanel {
 	private Object[] getRow(Employee employee) {
 		return new Object[] {employee.getEmpno(),employee.getEmpname(),employee.getTitle().getTname(),employee.getSalary()
 				,employee.getGender(),String.format("%s(%s층)",employee.getDno().getDeptname(),employee.getDno().getFloor()),employee.getIpsa()};
+	}
+	public void setPopupMenu(JPopupMenu popupMenu) {
+		E_table.setComponentPopupMenu(popupMenu);
+		
+	}
+	public Employee getSelectedEmployee() {
+		int selectedIndex = E_table.getSelectedRow();
+		String empNo = (String) E_table.getValueAt(selectedIndex, 0);
+		Employee emp = new Employee(empNo);
+		return list.get(list.indexOf(emp));
 	}	
 	
 	

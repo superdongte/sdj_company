@@ -29,7 +29,7 @@ public class EmployeeUiService {
 	public int registerEmployee(Employee employee) throws SQLException{
 		return Edao.insertEmployee(employee);
 	}
-	public String nextEmpNo() {
+	public String nextEmpNo() throws SQLException{
 		return Edao.nextEmpNo();
 	}
 	public int unRegisterEmployee(Employee employee) throws SQLException {
@@ -38,10 +38,10 @@ public class EmployeeUiService {
 	public int UpdateEmployee(Employee employee) throws SQLException {
 		return Edao.updateEmployee(employee);
 	}
-	public List<Title> selectTitleAll(){
+	public List<Title> selectTitleAll() throws SQLException{
 		return Tdao.selectTitleByAll();
 	}
-	public List<Department> selectDeptAll(){
+	public List<Department> selectDeptAll() throws SQLException{
 		return Ddao.selectDepartmentByAll();
 	}
 }

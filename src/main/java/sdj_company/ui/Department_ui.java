@@ -48,6 +48,7 @@ public class Department_ui extends JFrame implements ActionListener {
 	public static final String ADD = "추가";
 	public static final String UPDATE = "수정";
 	public static final String DEL = "삭제";
+	
 	public Department_ui() {
 
 		service = new DeptUiService();

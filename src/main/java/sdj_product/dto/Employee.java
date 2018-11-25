@@ -25,11 +25,15 @@ public class Employee {
 	public String getEmpno() {
 		return empno;
 	}
-
+	
 	public void setEmpno(String empno) {
 		this.empno = empno;
 	}
-
+	
+	public Employee(String empNo) {
+		this.empno = empNo;
+	}
+	
 	public String getEmpname() {
 		return empname;
 	}
@@ -89,6 +93,32 @@ public class Employee {
 		this.gender = gender;
 		this.ipsa = ipsa;
 		this.dno = dno;
-		
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((empno == null) ? 0 : empno.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Employee other = (Employee) obj;
+		if (empno == null) {
+			if (other.empno != null)
+				return false;
+		} else if (!empno.equals(other.empno))
+			return false;
+		return true;
+	}
+	
+	
 }//end of class

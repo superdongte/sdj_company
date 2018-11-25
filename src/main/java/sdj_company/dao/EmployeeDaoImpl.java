@@ -51,7 +51,7 @@ public class EmployeeDaoImpl implements EmployeeDao{
 	@Override
 	public int insertEmployee(Employee employee) throws SQLException {
 		LogUtil.prnLog("insertEmployee");
-		String sql = "insert into Employee values(?,?,?,?,?,?,?)";
+		String sql = "insert into Employee values(?, ?, ?, ?, ?, ?, ?)";
 		int rowAffected = 0;
 		try(Connection conn = ConnectionProvider.getConnection();
 				PreparedStatement pstmt = conn.prepareStatement(sql)){
@@ -92,7 +92,7 @@ public class EmployeeDaoImpl implements EmployeeDao{
 				pstmt.setString(2, employee.getTitle().getTno());
 				pstmt.setInt(3, employee.getSalary());
 				pstmt.setString(4, employee.getGender());
-				pstmt.setDate(6, new java.sql.Date(employee.getIpsa().getTime()));
+				pstmt.setDate(5, new java.sql.Date(employee.getIpsa().getTime()));
 				pstmt.setString(6, employee.getDno().getDeptno());
 				pstmt.setString(7, employee.getEmpno());
 				LogUtil.prnLog(pstmt);
@@ -133,8 +133,24 @@ public class EmployeeDaoImpl implements EmployeeDao{
 
 	@Override
 	public String nextEmpNo() {
-		// TODO Auto-generated method stub
-		return null;
+		 String sql = "select max(empno) as nextno from employee";//E018001
+         String nextStr = null;
+         try (Connection conn = ConnectionProvider.getConnection(); 
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            ResultSet rs = pstmt.executeQuery()) {
+            LogUtil.prnLog(pstmt);
+            if(rs.next()) {
+               System.out.println(rs.getString("nextno").substring(1));
+               nextStr = String.format("E%06d", (Integer.parseInt( rs.getString("nextno").substring(1) ) +1));
+            }
+            }catch(NullPointerException e) {
+            	nextStr = "E018001";
+            	e.printStackTrace();
+            }catch(SQLException e) {
+            	e.printStackTrace();
+            }
+
+		return nextStr;
 	}
 
 }
