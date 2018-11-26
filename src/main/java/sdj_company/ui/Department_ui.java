@@ -57,7 +57,7 @@ public class Department_ui extends JFrame implements ActionListener {
 
 	private void initComponents() {
 		setTitle("부서관리");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 283);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -225,6 +225,7 @@ public class Department_ui extends JFrame implements ActionListener {
 			tfFloor.setText(dept.getFloor()+"");
 	}
 	protected void do_btnCancel_actionPerformed(ActionEvent e) {
+		dispose();
 		clearTf();
 	}
 }// end of class

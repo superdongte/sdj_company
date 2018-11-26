@@ -53,7 +53,7 @@ public class Title_ui extends JFrame implements ActionListener {
 
 	private void initComponents() {
 		setTitle("직책관리");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 409, 304);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -196,6 +196,7 @@ public class Title_ui extends JFrame implements ActionListener {
 
 	protected void do_btnCancel_actionPerformed(ActionEvent e) {
 		clearTft();
+		dispose();
 	}
 
 	private void clearTft() {
